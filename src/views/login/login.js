@@ -37,7 +37,7 @@ function LogIn() {
                     <input type='submit' className='bg-blue-700 w-full h-10 cursor-pointer text-white rounded-md hover:bg-blue-600 hover:outline outline-2 outline-blue-600 outline-offset-2 text-sm mb-[10px]' />
                     {/* Log In Text */}
                     <div className='flex justify-center'>
-                        <p className='text-xs my-2'>Don't have an account yet?<Link to='/login'><span className='text-blue-600'> Sign Up.</span></Link></p>
+                        <p className='text-xs my-2'>Don't have an account yet?<Link to='/signup'><span className='text-blue-600'> Sign Up.</span></Link></p>
                     </div>
                 </form>
             </div>
