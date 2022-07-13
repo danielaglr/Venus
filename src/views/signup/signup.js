@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { UserAuth } from '../../contexts/authContext';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { writeNewUser } from '../../helpers/writeNewUser';
+
+import NewUserPrompt from '../../components/newUserPrompt/newUserPrompt';
 
 function SignUp() {
 
@@ -11,9 +13,10 @@ function SignUp() {
     const [password, setPassword] = useState('');
     const [cpassword, setCpassword] = useState('');
 
+    const [openPopUp, setOpenPopUp] = useState(false);
+
     const {createUser} = UserAuth();
     const auth = getAuth();
-    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,7 +28,7 @@ function SignUp() {
                     displayName: name
                 });
                 writeNewUser(auth.currentUser.uid, auth.currentUser.displayName, auth.currentUser.email).then(() => {
-                    navigate('/');
+                    setOpenPopUp(true);
                 });
             }
         } catch (e) {
@@ -35,6 +38,8 @@ function SignUp() {
 
   return (
     <>
+        {!openPopUp
+         ? 
         <div className='flex justify-center content-center items-center w-full h-screen'>
             <div className='block bg-slate-50 p-6 rounded-xl shadow-md shadow-slate-300 w-[600px]'>
                 <div>
@@ -52,7 +57,7 @@ function SignUp() {
                     <label className='text-sm'>Confirm Password</label>
                     <input type='password' className='h-8 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-blue-600 shadow-sm mb-[20px]' onChange={(e) => setCpassword(e.target.value)} />
                     {/* Submit Button */}
-                    <input type='button' onClick={handleSubmit} className='bg-blue-700 w-full h-10 cursor-pointer text-white rounded-md hover:bg-blue-600 hover:outline outline-2 outline-blue-600 outline-offset-2 text-sm mb-[10px]' />
+                    <input type='button' onClick={handleSubmit} value='Submit' className='bg-blue-700 w-full h-10 cursor-pointer text-white rounded-md hover:bg-blue-600 hover:outline outline-2 outline-blue-600 outline-offset-2 text-sm mb-[10px]' />
                     {/* Log In Text */}
                     <div className='flex justify-center'>
                         <p className='text-xs my-2'>Already have an account?<Link to='/login'><span className='text-blue-600'> Log In.</span></Link></p>
@@ -60,6 +65,9 @@ function SignUp() {
                 </div>
             </div>
         </div>
+        :
+        <NewUserPrompt />
+        }
     </>
   )
 }
