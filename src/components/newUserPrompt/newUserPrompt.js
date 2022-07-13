@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { getDatabase, update, ref } from 'firebase/database';
 
-import bodybuildIcon from '../../assets/images/seated-dumbbell.png';
-import deadliftIcon from '../../assets/images/deadlift.png';
+import musclegrowthIcon from '../../assets/images/seated-dumbbell.png';
+import strengthtrainIcon from '../../assets/images/deadlift.png';
 import bodyweightIcon from '../../assets/images/pushup.png';
 import { auth } from '../../firebase';
 
@@ -37,13 +37,13 @@ function NewUserPrompt() {
                 {/* Lift Type Cards */}
                 <div className='flex flex-row justify-evenly items-center my-[20px]'>
                     <div onClick={() => {setLiftType('Bodybuilding'); setTypeSelect('mg')}} className={`w-[250px] h-[280px] rounded-[24px] shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] justify-center ${typeSelect === 'mg' ? 'outline outline-2 outline-blue-700' : 'hover:outline outline-2 outline-blue-700 outline-offset-2'}`}>
-                        <img src={bodybuildIcon} alt='Dumbbell curl' className='w-[250px] h-[250px]' />
+                        <img src={musclegrowthIcon} alt='Dumbbell curl' className='w-[250px] h-[250px]' />
                         <div className='flex w-200px h-20px justify-center items-center'>
                             <span className='w-[250px] h-[30px] text-[20px] leading-[20px] text-center'>Muscle Growth</span>
                         </div>
                     </div>
                     <div onClick={() => {setLiftType('Powerlifting'); setTypeSelect('st')}} className={`w-[250px] h-[280px] rounded-[24px] shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] justify-center ${typeSelect === 'st' ? 'outline outline-2 outline-blue-700' : 'hover:outline outline-2 outline-blue-700 outline-offset-2'}`}>
-                        <img src={deadliftIcon} alt='Deadlift' className='w-[250px] h-[250px]' />
+                        <img src={strengthtrainIcon} alt='Deadlift' className='w-[250px] h-[250px]' />
                         <div className='flex w-200px h-20px justify-center items-center'>
                             <span className='w-[250px] h-[30px] text-[20px] leading-[20px] text-center'>Strength Training</span>
                         </div>                    </div>
